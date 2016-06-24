@@ -1,0 +1,33 @@
+github:https://github.com/MODBJ
+http://boltomli.github.io/neo4j-flask/
+pycharm
+markdown
+gitbook
+python3
+pip
+neo4j
+slack
+
+
+
+BULK INSERT [dbo].[OXAPIMMETRICSAPI]
+FROM 'C:\Users\v-bishen\Desktop\sql\METRICAGGREGATEDBYAPI-IS.CSV'
+WITH(
+	FIELDTERMINATOR = ',',
+	ROWTERMINATOR = '\n'
+)
+
+select name, SUM(callCountSuccess) as callCountSuccess, 
+    SUM(callCountBlocked) as callCountBlocked, 
+    SUM(callCountFailed) as callCountFailed, 
+    SUM(callCountOther) as callCountOther,
+    SUM(callCountTotal) as callCountTotal,
+    SUM(bandwidth) as bandwidth,
+    SUM(cacheHitCount) as cacheHitCount,
+    SUM(cacheMissCount) as cacheMissCount,
+    AVG(apiTimeAvg) as apiTimeAvg,
+    AVG(apiTimeMin) as apiTimeMin,
+    AVG(apiTimeMax) as apiTimeMax,
+    AVG(serviceTimeAvg) as serviceTimeAvg,
+    AVG(serviceTimeMin) as serviceTimeMin,
+    AVG(serviceTimeMax) as serviceTimeMax  from dbo.[Tbl.MASTER.APIM.Metric.API] group by name
